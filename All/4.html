@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>clock</title>
+</head>
+<style>
+    html,
+    body{
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    body{
+        background-color: #38444D;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    /* .cl-body{
+        
+    } */
+    .cl-dot{
+        position: absolute;
+        top: calc(50% + 4px);
+        left: calc(50% - 4px);
+
+        width: 0.5rem;
+        height: 0.5rem;
+        border-radius: 4px;
+
+        background-color: rgb(36, 36, 42);
+
+        z-index: 7;
+    }
+
+    .cl-hand-seconds,
+    .cl-hand-minutes,
+    .cl-hand-hours{
+        position: absolute;
+        top:50%;
+        left: 50%;
+        transform-origin: left;
+        transform: rotate(270deg);
+
+    }
+    .cl-hand-seconds{
+        color: lightcoral;
+        z-index: 6;
+    }
+    .cl-hand-minutes{
+        color: green;
+        z-index: 5;
+    }
+    .cl-hand-hours{
+        color: white;
+        z-index: 4;
+    }
+</style>
+<body>
+    <div class="cl-body">
+        <div class="cl-dot"></div>
+        <div class="cl-one"></div>
+        <div class="cl-two"></div>
+
+        <div class="cl-hand-seconds">· · · · · ·</div>
+        <div class="cl-hand-minutes">· · · · ·</div>
+        <div class="cl-hand-hours">· · · ·</div>
+    </div>
+</body>
+<script>
+    secondsArMv = setInterval(()=>{
+        let time = new Date();
+        
+        let secondsHand = document.querySelector('.cl-hand-seconds');
+        let minutesHand = document.querySelector('.cl-hand-minutes');
+        let hoursHand = document.querySelector('.cl-hand-hours');
+        console.log('sec = '+ time.getSeconds());
+        let degSec = ((time.getSeconds()/60) * 360) + 90 + 180;
+        console.log('deg = ' + degSec);
+        let degMin = ((time.getMinutes()/60) * 360) + ((time.getSeconds()/60) * 6) + 90 + 180;
+        let degHours = ((time.getHours()/12) * 360) + ((time.getMinutes()/60) * 30) + 90 + 180;
+
+        secondsHand.style.transform = `rotate(${degSec}deg)`;
+        minutesHand.style.transform = `rotate(${degMin}deg)`;
+        hoursHand.style.transform = `rotate(${degHours}deg)`;
+    }, 1000);
+</script>
+</html>

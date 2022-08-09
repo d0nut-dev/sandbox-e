@@ -1,0 +1,25 @@
+html,
+body{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+.scene{
+    position: relative;
+
+    min-height: 100%;
+    background-color: lightgreen;
+}
+.character{
+    position: absolute;
+    /* top: calc(50%);
+    left: calc(50%); */
+    /* bottom: calc(50%);
+    right: calc(50%); */
+
+    transform: translate(-50%, -50%);
+
+    height: 40px;
+    width: 25px;
+    background-color: lightpink;
+}

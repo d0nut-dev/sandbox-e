@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="output0">00:00:00</div>
+    <div id="output1">00:00.00</div>
+    <div id="output2"></div>
+    <form>
+        <input type="text" id="inHours" style="width: 20px;" placeholder="00" required>
+        <div style="display: inline-block;">:</div>
+        <input type="text" id="inMinutes" style="width: 20px;" placeholder="00" required>
+        <div style="display: inline-block;">.</div>
+        <input type="text" id="inSeconds" style="width: 20px;" placeholder="00" required>
+        <button>set</button>
+        <button>clear</button>
+    </form>
+    <div id="output3">1</div>
+    <button>start</button>
+    <button>stop</button>
+</body>
+
+<script>
+    setInterval(()=>{
+        const d = new Date();
+        document.querySelector('#output0').textContent = d.toLocaleTimeString();
+    }, 1000)
+// 
+    const output1 = document.querySelector('#output1');
+    let timeHours;
+    let timeMinutes;
+    let timeSeconds;
+    setInterval(()=>{
+        timeHours = new Date().getHours();
+        timeMinutes = new Date().getMinutes();
+        timeSeconds = new Date().getSeconds();
+        output1.textContent = timeHours + ':' + timeMinutes + '.' + timeSeconds;
+    }, 1000);
+// 
+    let counterUp = 0;
+    const output2 = document.querySelector('#output2');
+    output2.textContent = counterUp + '';
+    setInterval(()=>{
+        counterUp++;
+        output2.textContent = counterUp + '';
+    }, 1000);
+// 
+    // const output3 = document.querySelector('#output3');
+    
+    // const inHoursBox = document.getElementById('inHours');
+    // const inMinutesBox = document.getElementById('inMinutes');
+    // const inSecondsBox = document.getElementById('inSeconds');
+    
+    // const setButton = document.getElementById('setButton');
+    // const clearButton = document.getElementById('clearButton');
+    // const startButton = document.getElementById('startButton');
+    // const stopButton = document.getElementById('stopButton');
+
+    // const inHours = inHoursBox.value;
+    // const inMinutes = inMinutesBox.value;
+    // const inSeconds = inSeconds.value;
+
+
+
+</script>
+
+</html>

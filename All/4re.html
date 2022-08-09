@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pomodoro-cl</title>
+</head>
+<style>
+    html,
+    body{
+        height: 100%;
+
+        margin: 0;
+        padding: 0;
+
+        background-color: rgb(53, 60, 67);
+    }
+    .cl-container{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        overflow: none;
+    }
+    .cl-background{
+        position: absolute;
+
+        height: 100px;
+        width: 100px;
+
+        background-color: rgba(0, 0, 0, 0.15);
+        border-radius: 55px;
+    }
+    .cl-line-v,
+    .cl-line-h{
+        position: absolute;
+        background-color: aqua;
+
+        z-index: 1;
+    }
+    .cl-line-v{
+        height: 100px;
+        width: 2px;
+    }
+    .cl-line-h{
+        height: 2px;
+        width: 100px;
+    }
+    .cl-line-one,
+    .cl-line-two,
+    .cl-line-three,
+    .cl-line-four{
+        background-color: white;
+
+        z-index: 1;
+    }
+    .cl-line-one{
+        position: absolute;
+        width: 100px;
+        height: 1px;
+
+        transform: rotate(30deg);
+    }
+    .cl-line-two{
+        position: absolute;
+        width: 100px;
+        height: 1px;
+
+        transform: rotate(-30deg);
+    }
+    .cl-line-three{
+        position: absolute;
+        width: 1px;
+        height: 100px;
+
+        transform: rotate(30deg);
+    }
+    .cl-line-four{
+        position: absolute;
+        width: 1px;
+        height: 100px;
+
+        transform: rotate(-30deg);
+    }
+    .cl-dot{
+        position: absolute;
+        height: 80px;
+        width: 80px;
+
+        background-color: rgb(53, 60, 67);
+        border-radius: 40px;
+
+        z-index: 2;
+    }
+    .cl-dot-i{
+        position: absolute;
+        width: 3px;
+        height: 3px;
+        border-radius: 2px;
+        background-color: black;
+        z-index: 6;
+    }
+    .cl-seconds,
+    .cl-minutes,
+    .cl-hours{
+        position: absolute;
+
+        /* transition: all 0.1s ease-in-out; */
+        transition: all 1s linear;
+    }
+    .cl-seconds{
+        bottom: 10%;
+
+        width: 1px;
+        height: 45px;
+        border-radius: 2px;
+        
+        transform-origin: bottom;
+
+        background-color: lightcoral;
+        z-index: 5;
+    }
+    .cl-minutes{
+        bottom: 10%;
+
+        width: 1px;
+        height: 32px;
+        border-radius: 2px;
+
+        transform-origin: bottom;
+
+        background-color: green;
+        z-index: 4;
+    }
+    .cl-hours{
+        bottom: 10%;
+
+        width: 1px;
+        height: 25px;
+        border-radius: 2px;
+        
+        transform-origin: bottom;
+
+        background-color: white;
+        z-index: 3;
+    }
+</style>
+<body>
+    <div class="cl-container">
+        <div class="cl-background"></div>
+
+        <div class="cl-line-v"></div>
+        <div class="cl-line-h"></div>
+
+        <div class="cl-line-one"></div>
+        <div class="cl-line-two"></div>
+        <div class="cl-line-three"></div>
+        <div class="cl-line-four"></div>
+
+        <div class="cl-dot"></div>
+        <div class="cl-dot-i"></div>
+
+        <div class="cl-seconds"></div>
+        <div class="cl-minutes"></div>
+        <div class="cl-hours"></div>
+    </div>
+</body>
+<script>
+    setInterval(()=>{
+        const secondsHand = document.querySelector('.cl-seconds');
+        const minutesHand = document.querySelector('.cl-minutes');
+        const hoursHand = document.querySelector('.cl-hours');
+
+        const time = new Date();
+        const sec = time.getSeconds();
+        const min = time.getMinutes();
+        const hour = time.getHours();
+
+        const degS = ((sec/60)*360);
+        const degM = ((min/60)*360) + ((sec/60)*6);
+        const degH = ((hour/12)*360) + ((min/60)*30);
+
+        secondsHand.style.transform = `rotate(${degS}deg)`;
+        minutesHand.style.transform = `rotate(${degM}deg)`;
+        hoursHand.style.transform = `rotate(${degH}deg)`;
+    }, 1000);
+</script>
+</html>
